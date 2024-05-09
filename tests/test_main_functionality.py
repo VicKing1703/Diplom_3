@@ -12,6 +12,7 @@ class TestMainFunctionality:
     def test_open_constructor(self, driver):
         driver.get(Data.LOGIN_URL)
         main_page = MainPage(driver)
+
         main_page.click_to_key_constructor()
         assert "Соберите бургер" in main_page.check_display_title_burger(), 'На странице нет надписи "Соберите бургер"'
 
@@ -20,14 +21,16 @@ class TestMainFunctionality:
     def test_open_order_history(self, driver):
         driver.get(Data.BASE_URL)
         main_page = MainPage(driver)
-        main_page.click_to_button_order_history()
         feed_page = FeedPage(driver)
+
+        main_page.click_to_button_order_history()
         assert "Лента заказов" in feed_page.check_display_title_feed(), 'На странице нет надписи "Лента заказов"'
 
     @allure.title('При нажатии на ингридиент, появляется всплывающее окно с деталями')
     def test_open_ingredient_details_popup(self, driver):
         driver.get(Data.BASE_URL)
         main_page = MainPage(driver)
+
         main_page.click_to_ingredient_fluorescent_bun()
         assert "Детали ингредиента" in main_page.check_display_title_ingredient_details(), \
             'Не открылось всплывающее окно с деталями ингредиента или в окне нет заголовка "Детали ингредиента"'
@@ -36,6 +39,7 @@ class TestMainFunctionality:
     def test_close_ingredient_details_popup(self, driver):
         driver.get(Data.BASE_URL)
         main_page = MainPage(driver)
+
         main_page.click_to_ingredient_fluorescent_bun()
         main_page.close_ingredient_details_popup()
         assert main_page.check_display_ingredient_details_popup() is False, \
@@ -46,6 +50,7 @@ class TestMainFunctionality:
     def test_increase_counter_ingredient_after_add_fluorescent_bun_in_basket(self, driver):
         driver.get(Data.BASE_URL)
         main_page = MainPage(driver)
+
         main_page.drag_and_drop_fluorescent_bun_in_basket()
         assert main_page.get_count_ingredient() == '2', 'Счётчик ингредиента не увеличился'
 
@@ -53,6 +58,7 @@ class TestMainFunctionality:
     def test_login_user_can_order(self, login, driver):
         driver = login
         main_page = MainPage(driver)
+
         main_page.drag_and_drop_fluorescent_bun_in_basket()
         main_page.click_to_button_order()
         assert main_page.get_order_number() != '9999', 'Окно с номером заказа не открылось или номер заказа равен 9999'

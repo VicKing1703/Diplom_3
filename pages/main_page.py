@@ -52,7 +52,7 @@ class MainPage(BasePage):
 
     @allure.step('Окно деталей ингредиента не отображается')
     def check_display_ingredient_details_popup(self):
-        return self.is_visible(MainPageLocators.POPUP_IDENTIFER)
+        return self.is_visible(MainPageLocators.POPUP_IDENTIFIER)
 
     @allure.step('Перетаскивание ингредиента в правую часть экрана')
     def drag_and_drop_fluorescent_bun_in_basket(self):
@@ -69,6 +69,7 @@ class MainPage(BasePage):
     def close_order_number_popup(self):
         self.click_to_element(MainPageLocators.BUTTON_CLOSE_ORDER_COUNTER)
 
+    # Вынес в отдельный метод а не фикстуру, т.к. в таком виде было проще оперировать
     @allure.step('Создание заказа')
     def create_order(self):
         self.drag_and_drop_fluorescent_bun_in_basket()

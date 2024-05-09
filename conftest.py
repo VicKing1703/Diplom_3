@@ -22,6 +22,7 @@ def driver(request):
     yield driver
     driver.quit()
 
+
 @pytest.fixture
 def login(driver):
     driver.get(Data.BASE_URL)
@@ -32,12 +33,3 @@ def login(driver):
     login_page.input_password(TestAccount.TEST_PASSWORD)
     login_page.click_to_button_in()
     return driver
-
-@pytest.fixture
-def create_order(login):
-    driver = login
-    main_page = MainPage(driver)
-    main_page.drag_and_drop_fluorescent_bun_in_basket()
-    main_page.click_to_button_order()
-    number_of_order = main_page.get_order_number()
-    return number_of_order

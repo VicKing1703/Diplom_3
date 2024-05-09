@@ -22,10 +22,6 @@ class FeedPage(BasePage):
     def get_order_details(self):
         return self.find_element_with_wait(FeedPageLocators.POPUP_ORDER_DETAILS)
 
-    @allure.step('Получить номер заказа в работе')
-    def get_number_order_in_progress(self):
-        return self.get_text_from_element(FeedPageLocators.NUMBER_ORDER_IN_PROGRESS)
-
     @allure.step('Получить номер заказов в ленте заказов')
     def get_number_order_feed_list(self):
         return self.get_text_from_element(FeedPageLocators.NUMBER_ORDER_FEED_LIST)
@@ -36,4 +32,4 @@ class FeedPage(BasePage):
 
     @allure.step('Получить номер заказа, как он появится в списке')
     def get_updated_order_number_in_list_in_progress(self):
-        return self.get_updated_text_from_element(FeedPageLocators.NUMBER_ORDER_IN_PROGRESS, 10)
+        return self.get_updated_text_from_element(FeedPageLocators.NUMBER_ORDER_IN_PROGRESS)

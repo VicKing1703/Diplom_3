@@ -8,7 +8,7 @@ class LoginPage(BasePage):
 
     @allure.step('Отображение надписи "Вход"')
     def check_display_title_login(self):
-        return self.get_text_from_element(LoginPageLocators.LABLE_LOGIN)
+        return self.get_text_from_element(LoginPageLocators.LABEL_LOGIN)
 
     @allure.step('Ввести email')
     def input_email(self, email):
