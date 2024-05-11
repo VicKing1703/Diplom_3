@@ -32,4 +32,4 @@ class FeedPage(BasePage):
 
     @allure.step('Получить номер заказа, как он появится в списке')
     def get_updated_order_number_in_list_in_progress(self):
-        return self.get_updated_text_from_element(FeedPageLocators.NUMBER_ORDER_IN_PROGRESS)
+        return self.get_text_from_element(FeedPageLocators.NUMBER_ORDER_IN_PROGRESS)

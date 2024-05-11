@@ -29,19 +29,12 @@ class BasePage:
     # Метод для получения обновлённого текста (для полей с обновляемыми значениями)
     def get_updated_text_from_element(self, locator, timeout=10):
         wait = WebDriverWait(self.driver, timeout)
-
         # Ожидаем, пока элемент не станет видимым
         element = wait.until(EC.visibility_of_element_located(locator))
-
-        try:
-            # Получаем текст элемента перед ожиданием
-            current_text = element.text
-
-            # Ожидаем изменения текста элемента
-            wait.until(lambda driver: element.text != current_text)
-        except TimeoutException:
-            pass  # Просто проигнорируем TimeoutException и вернем текущий текст
-
+        # Получаем текст элемента перед ожиданием
+        current_text = element.text
+        # Ожидаем изменения текста элемента
+        wait.until(lambda driver: element.text != current_text)
         # Получаем и возвращаем обновленный текст элемента
         updated_text = element.text
         return updated_text
